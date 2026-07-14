@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "postId": 1,
+    "name": "abhi",
+    "content": "good blog",
+    "createdAt": "2026-06-01T06:56:11.517Z"
+  },
+  {
+    "id": 2,
+    "postId": 1,
+    "name": "sdssd",
+    "content": "dd",
+    "createdAt": "2026-06-01T11:46:09.624Z"
+  },
+  {
+    "id": 3,
+    "postId": 1,
+    "name": "cdd",
+    "content": "dd",
+    "createdAt": "2026-06-01T11:56:57.418Z"
+  },
+  {
+    "id": 4,
+    "postId": 3,
+    "name": "ray",
+    "content": "nyc pic",
+    "createdAt": "2026-06-01T13:48:55.997Z"
+  }
+]

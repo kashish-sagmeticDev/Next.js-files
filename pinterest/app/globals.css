@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Masonry grid container */
+.masonry-grid {
+  display: flex;
+  width: 100%;
+  margin-left: 0; /* Remove negative margin if causing issues */
+}
+
+/* Each column takes equal width */
+.masonry-grid_column {
+  background-clip: padding-box;
+  flex: 1;
+  margin-left: 12px; /* gutter size */
+}
+
+/* First column should have no left margin */
+.masonry-grid_column:first-child {
+  margin-left: 0;
+}
+
+/* Cards inside columns */
+.masonry-grid_column > div {
+  margin-bottom: 16px;
+  break-inside: avoid;
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "slug": "hii",
+    "title": "hii",
+    "content": "hususa ashash",
+    "excerpt": "hiiii",
+    "coverImage": "https://images.unsplash.com/photo-1694903089438-bf28d4697d9a?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "date": "Jun 1, 2026",
+    "createdAt": "2026-06-01T11:16:32.216Z",
+    "updatedAt": "2026-06-01T11:19:20.169Z"
+  },
+  {
+    "id": 2,
+    "slug": "fd",
+    "title": "fd",
+    "content": "eeed",
+    "excerpt": "dscs",
+    "coverImage": "https://images.unspash.com/photo-1694903089438-bf28d4697d9a?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "date": "Jun 1, 2026",
+    "createdAt": "2026-06-01T11:57:15.827Z",
+    "updatedAt": "2026-06-01T11:57:37.052Z"
+  },
+  {
+    "id": 3,
+    "slug": "hello",
+    "title": "hello",
+    "content": "<B>SHDH</B>",
+    "excerpt": "BYE",
+    "coverImage": "https://images.unsplash.com/photo-1727434032792-c7ef921ae086?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "date": "Jun 1, 2026",
+    "createdAt": "2026-06-01T13:47:59.830Z"
+  }
+]
