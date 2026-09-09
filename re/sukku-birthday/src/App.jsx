@@ -9,9 +9,14 @@ import MemoryDeck from "./components/MemoryDeck/MemoryDeck";
 import SpecialMoments from "./components/SpecialMoments/SpecialMoments";
 import LetterBox from "./components/LetterBox/LetterBox";
 import BirthdayWish from "./components/BirthdayWish/BirthdayWish";
+import Ending from "./components/Ending/Ending";
 import { memories } from "./data/memories";
 
+import useLenis from "./hooks/useLenis";
+
 function App() {
+   useLenis();
+   
   return (
     <div className="app">
       <CustomCursor />
@@ -50,7 +55,9 @@ function App() {
 
         <LetterBox />
 
-         <BirthdayWish />
+        <BirthdayWish />
+
+        <Ending />
       </main>
 
       <MusicPlayer />

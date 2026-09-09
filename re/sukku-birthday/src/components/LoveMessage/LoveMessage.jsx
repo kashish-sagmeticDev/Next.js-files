@@ -9,43 +9,44 @@ function LoveMessage() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const lines = gsap.utils.toArray(".love-line");
+      const lines = gsap.utils.toArray(".love-message__line");
 
       gsap.fromTo(
         lines,
         {
-          opacity: 0.12,
-          y: 35,
+          opacity: 0.15,
+          y: 30,
         },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.18,
-          duration: 0.8,
+          duration: 0.9,
+          stagger: 0.35,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: ".love-message-content",
-            start: "top 75%",
-            end: "bottom 45%",
-            scrub: 1,
+            trigger: sectionRef.current,
+            start: "top 65%",
+            once: true,
           },
         }
       );
 
       gsap.fromTo(
-        ".love-small-heart",
+        ".love-message__signature",
         {
-          scale: 0,
-          rotation: -45,
+          opacity: 0,
+          y: 20,
         },
         {
-          scale: 1,
-          rotation: 0,
-          duration: 1,
-          ease: "back.out(2)",
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 1.4,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: ".love-message-content",
-            start: "top 70%",
+            trigger: sectionRef.current,
+            start: "top 55%",
+            once: true,
           },
         }
       );
@@ -55,57 +56,45 @@ function LoveMessage() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="love-message-section"
-    >
-      <div className="love-message-inner">
+    <section className="love-message" ref={sectionRef}>
+      <div className="love-message__inner">
+        <p className="love-message__eyebrow">
+          A little something from me <span style={{ marginLeft: '4px' }}>♥</span>
+        </p>
 
-        <div className="love-message-heading">
-          <span className="eyebrow">
-            A little something from me
-          </span>
-
-          <div className="love-small-heart">
-            ♥
-          </div>
-        </div>
-
-        <div className="love-message-content">
-          <p className="love-line">
+        <div className="love-message__text">
+          <p className="love-message__line">
             If I had to describe what you mean to me,
           </p>
 
-          <p className="love-line serif">
-            I probably wouldn't find the right words.
+          <p className="love-message__line">
+            I probably wouldn&apos;t find the right words.
           </p>
 
-          <p className="love-line">
-            So instead, I'll just say thank you.
+          <p className="love-message__line">
+            So instead, I&apos;ll just say thank you.
           </p>
 
-          <p className="love-line">
+          <p className="love-message__line">
             Thank you for being there,
           </p>
 
-          <p className="love-line serif">
+          <p className="love-message__line">
             for every laugh, every conversation,
           </p>
 
-          <p className="love-line">
+          <p className="love-message__line">
             and every little moment that became
           </p>
 
-          <p className="love-line serif love-highlight">
+          <p className="love-message__line">
             a beautiful memory.
           </p>
         </div>
 
-        <div className="love-message-signature">
-          <span>with love,</span>
-          <strong>Abhi ♥</strong>
-        </div>
-
+        <p className="love-message__signature">
+          with love, Abhi <span>♥</span>
+        </p>
       </div>
     </section>
   );

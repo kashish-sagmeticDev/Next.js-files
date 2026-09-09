@@ -1,104 +1,151 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import heroImage from "../../assets/photos/hero.jpg";
 
 function Hero() {
-  const heroRef = useRef(null);
+  const sectionRef = useRef(null);
+  const contentRef = useRef(null);
+  const photoRef = useRef(null);
+  const scrollRef = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        delay: 0.2,
+      const timeline = gsap.timeline({
+        defaults: {
+          ease: "power3.out",
+        },
       });
 
-      tl.from(".hero-eyebrow", {
-        opacity: 0,
-        y: 20,
-        duration: 0.7,
-        ease: "power3.out",
-      })
-        .from(
-          ".hero-title-line",
-          {
-            opacity: 0,
-            y: 80,
-            stagger: 0.12,
-            duration: 1,
-            ease: "power4.out",
-          },
-          "-=0.3"
-        )
-        .from(
-          ".hero-description",
+      timeline
+        .fromTo(
+          ".hero__eyebrow",
           {
             opacity: 0,
             y: 20,
-            duration: 0.7,
           },
-          "-=0.5"
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+          }
         )
-        .from(
-          ".hero-photo",
+        .fromTo(
+          ".hero__title-line",
           {
             opacity: 0,
-            scale: 0.85,
-            rotation: -5,
-            duration: 1.2,
-            ease: "back.out(1.4)",
+            y: 80,
           },
-          "-=0.5"
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.12,
+          },
+          "-=0.3"
+        )
+        .fromTo(
+          ".hero__description",
+          {
+            opacity: 0,
+            y: 25,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+          },
+          "-=0.4"
+        )
+        .fromTo(
+          photoRef.current,
+          {
+            opacity: 0,
+            scale: 0.88,
+            y: 40,
+            rotation: -4,
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            rotation: 0,
+            duration: 1.1,
+          },
+          "-=0.6"
+        )
+        .fromTo(
+          scrollRef.current,
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 0.6,
+          },
+          "-=0.3"
         );
-    }, heroRef);
+
+      // Very subtle photo movement
+      gsap.to(photoRef.current, {
+        y: -10,
+        rotation: 1.5,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      // Scroll indicator
+      gsap.to(".hero__scroll-dot", {
+        y: 12,
+        duration: 1.3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={heroRef} className="hero">
-      <div className="hero-inner">
-        <div className="hero-copy">
-          <p className="eyebrow hero-eyebrow">
-            Today is all about you
-          </p>
+    <section className="hero" ref={sectionRef}>
+      <div className="hero__content" ref={contentRef}>
+        <p className="hero__eyebrow">
+          A little something for you
+        </p>
 
-          <h1 className="hero-title">
-            <span className="hero-title-line">
-              Happy Birthday,
-            </span>
+        <h1 className="hero__title">
+          <span className="hero__title-line">Happy Birthday,</span>
+          <span className="hero__title-line hero__title-name">
+            Sukku <span>♥</span>
+          </span>
+        </h1>
 
-            <span className="hero-title-line hero-name">
-              Sukku <span>♥</span>
-            </span>
-          </h1>
+        <p className="hero__description">
+          Today is about you,
+          <br />
+          but I couldn&apos;t let the day pass
+          without telling you how special you are.
+        </p>
+      </div>
 
-          <p className="hero-description">
-            A little corner of the internet,
-            <br />
-            made just for you.
-          </p>
-
-          <div className="hero-actions">
-            <button className="hero-button interactive">
-              Scroll with me ↓
-            </button>
-          </div>
-        </div>
-
-        <div className="hero-visual">
-          <div className="photo-decoration" />
-
-          <div className="hero-photo">
-            <div className="photo-placeholder">
-              <span>Your photo</span>
-            </div>
-
-            <p>my favourite person ♡</p>
-          </div>
+      <div className="hero__photo-wrap">
+        <div className="hero__photo" ref={photoRef}>
+          <img
+            src={heroImage}
+            alt="Sukku"
+            data-cursor="VIEW"
+          />
         </div>
       </div>
 
-      <div className="hero-scroll">
-        <span>Scroll to begin</span>
-        <div className="scroll-line" />
+      <div className="hero__scroll" ref={scrollRef}>
+        <span>Scroll with me</span>
+
+        <div className="hero__scroll-line">
+          <span className="hero__scroll-dot" />
+        </div>
       </div>
     </section>
   );
