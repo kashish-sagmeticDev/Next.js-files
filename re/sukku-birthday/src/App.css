@@ -1,0 +1,3052 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap");
+
+:root {
+  --bg: #fff8f8;
+  --text: #241719;
+  --muted: #806f72;
+  --accent: #d94f70;
+  --accent-dark: #b93658;
+  --white: #ffffff;
+  --border: rgba(36, 23, 25, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+button {
+  border: none;
+  outline: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------
+   Typography
+-------------------------------- */
+
+.serif {
+  font-family: "Playfair Display", serif;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* --------------------------------
+   Selection
+-------------------------------- */
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+/* --------------------------------
+   Mobile
+-------------------------------- */
+
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+}
+
+/* --------------------------------
+   Floating Hearts
+-------------------------------- */
+
+.floating-hearts {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  color: var(--accent);
+  font-size: 14px;
+  will-change: transform;
+  user-select: none;
+}
+
+/* --------------------------------
+   Custom Cursor
+-------------------------------- */
+
+.cursor-dot,
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--text);
+}
+
+.cursor-follower {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--accent);
+  opacity: 0.2;
+}
+
+@media (max-width: 768px) {
+  .cursor-dot,
+  .cursor-follower {
+    display: none;
+  }
+}
+
+/* --------------------------------
+   Opening Experience
+-------------------------------- */
+
+.opening {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  overflow: hidden;
+  background: #fff8f8;
+}
+
+.curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.12),
+      transparent 45%
+    ),
+    linear-gradient(110deg, #f9dce2, #f2b7c5, #f9dce2);
+  box-shadow: inset 0 0 80px rgba(120, 30, 50, 0.08);
+}
+
+.curtain-left {
+  left: 0;
+}
+
+.curtain-right {
+  right: 0;
+}
+
+.opening-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  padding: 30px;
+}
+
+.opening-title {
+  margin-top: 18px;
+
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3.2rem, 7vw, 7rem);
+  line-height: 0.95;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.opening-title em {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.opening-subtitle {
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.open-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 42px;
+  padding: 15px 23px;
+
+  background: var(--text);
+  color: white;
+
+  border-radius: 100px;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.open-button:hover {
+  transform: translateY(-3px);
+  background: var(--accent);
+}
+
+.button-heart {
+  color: #ffb8c7;
+  transition: transform 0.3s ease;
+}
+
+.open-button:hover .button-heart {
+  transform: scale(1.25);
+}
+
+@media (max-width: 768px) {
+  .opening-title {
+    font-size: clamp(3rem, 15vw, 5rem);
+  }
+
+  .opening-subtitle {
+    max-width: 280px;
+    line-height: 1.6;
+  }
+}
+
+/* --------------------------------
+   Hero
+-------------------------------- */
+
+.hero {
+  min-height: 100svh;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  padding: 100px 7vw;
+}
+
+.hero-inner {
+  width: min(1250px, 100%);
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  margin-top: 18px;
+
+  font-family: "Playfair Display", serif;
+  font-size: clamp(4rem, 7vw, 7.8rem);
+  font-weight: 400;
+
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+.hero-title-line {
+  display: block;
+}
+
+.hero-name {
+  font-style: italic;
+}
+
+.hero-name span {
+  color: var(--accent);
+  font-size: 0.5em;
+  vertical-align: middle;
+}
+
+.hero-description {
+  margin-top: 35px;
+
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  margin-top: 35px;
+}
+
+.hero-button {
+  padding: 13px 20px;
+
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+
+  color: var(--text);
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.hero-button:hover {
+  background: white;
+  transform: translateY(-2px);
+}
+
+/* --------------------------------
+   Hero Photo
+-------------------------------- */
+
+.hero-visual {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-photo {
+  width: min(390px, 80vw);
+
+  padding: 12px 12px 45px;
+
+  background: white;
+
+  box-shadow: 0 25px 70px rgba(40, 15, 20, 0.12);
+
+  transform: rotate(3deg);
+
+  position: relative;
+  z-index: 2;
+}
+
+.photo-placeholder {
+  aspect-ratio: 0.82;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #f5dfe4, #f9eef0);
+
+  color: var(--muted);
+
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+}
+
+.hero-photo p {
+  position: absolute;
+
+  bottom: 12px;
+  left: 0;
+  right: 0;
+
+  text-align: center;
+
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+
+  color: var(--text);
+}
+
+.photo-decoration {
+  position: absolute;
+
+  width: 340px;
+  height: 430px;
+
+  border: 1px solid rgba(217, 79, 112, 0.25);
+
+  transform: rotate(-8deg);
+}
+
+/* --------------------------------
+   Scroll Indicator
+-------------------------------- */
+
+.hero-scroll {
+  position: absolute;
+  bottom: 30px;
+  left: 7vw;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  color: var(--muted);
+
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* --------------------------------
+   Memories
+-------------------------------- */
+
+.memories {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 120px 7vw 160px;
+}
+
+.memories-title {
+  max-width: 620px;
+  margin-top: 18px;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.8rem, 5vw, 5.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.memories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 60px;
+}
+
+.memory-card {
+  min-height: 230px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.memory-date {
+  color: var(--accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.memory-card h3 {
+  margin-top: 38px;
+  font-family: "Playfair Display", serif;
+  font-size: 1.65rem;
+  font-weight: 500;
+}
+
+.memory-card > p:last-child {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.scroll-line {
+  width: 50px;
+  height: 1px;
+  background: var(--border);
+}
+
+/* --------------------------------
+   Responsive
+-------------------------------- */
+
+@media (max-width: 850px) {
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 100px;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 70px;
+  }
+
+  .hero-title {
+    font-size: clamp(3.7rem, 15vw, 6rem);
+  }
+
+  .hero-visual {
+    justify-content: center;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+
+  .memories {
+    padding-top: 80px;
+    padding-bottom: 100px;
+  }
+
+  .memories-grid {
+    grid-template-columns: 1fr;
+    margin-top: 40px;
+  }
+}
+
+/* =================================
+   Music Player
+================================= */
+
+.music-player {
+  position: fixed;
+
+  right: 25px;
+  bottom: 25px;
+
+  z-index: 3000;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 17px;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  backdrop-filter: blur(14px);
+
+  border: 1px solid var(--border);
+
+  border-radius: 100px;
+
+  color: var(--text);
+
+  box-shadow:
+    0 12px 35px rgba(40, 15, 20, 0.1);
+
+  font-size: 0.76rem;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.music-player:hover {
+  transform: translateY(-3px);
+
+  background: white;
+}
+
+.music-icon {
+  width: 27px;
+  height: 27px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: #f7dce2;
+
+  color: var(--accent);
+}
+
+.music-player.is-playing
+.music-icon {
+  animation:
+    musicPulse 1s
+    infinite ease-in-out;
+}
+
+@keyframes musicPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.18);
+  }
+}
+
+/* ---------------------------------
+   Overlay
+--------------------------------- */
+
+.music-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 4700;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  background:
+    rgba(36, 23, 25, 0.45);
+
+  backdrop-filter: blur(14px);
+
+  animation:
+    musicOverlayIn 0.4s ease;
+}
+
+@keyframes musicOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------
+   Panel
+--------------------------------- */
+
+.music-panel {
+  position: relative;
+
+  width: min(520px, 100%);
+
+  min-height: 650px;
+
+  padding: 65px 50px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff8f8,
+      #fff
+    );
+
+  box-shadow:
+    0 40px 120px
+    rgba(0, 0, 0, 0.2);
+
+  overflow: hidden;
+}
+
+.music-close {
+  position: absolute;
+
+  top: 20px;
+  right: 20px;
+
+  width: 36px;
+  height: 36px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  font-size: 1.5rem;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.music-close:hover {
+  background: #f7dfe4;
+
+  color: var(--accent);
+}
+
+.music-panel-content {
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+/* ---------------------------------
+   Disc
+--------------------------------- */
+
+.music-disc {
+  width: 250px;
+  height: 250px;
+
+  margin: 50px 0 45px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background:
+    radial-gradient(
+      circle,
+      #fff8f8 0 9%,
+      #d94f70 10% 11%,
+      #f3c3ce 12% 30%,
+      #d94f70 31% 32%,
+      #f3c3ce 33% 50%,
+      #d94f70 51% 52%,
+      #f3c3ce 53% 70%,
+      #d94f70 71% 72%,
+      #f3c3ce 73% 100%
+    );
+
+  box-shadow:
+    0 25px 70px
+    rgba(217, 79, 112, 0.18);
+
+  will-change: transform;
+}
+
+.music-disc-inner {
+  width: 65px;
+  height: 65px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: white;
+
+  color: var(--accent);
+
+  font-size: 1.2rem;
+
+  box-shadow:
+    0 5px 20px
+    rgba(40, 15, 20, 0.1);
+}
+
+/* ---------------------------------
+   Music title
+--------------------------------- */
+
+.music-panel h2 {
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size: 3.5rem;
+
+  line-height: 0.9;
+
+  font-weight: 400;
+
+  letter-spacing: -0.04em;
+}
+
+.music-panel h2 em {
+  color: var(--accent);
+
+  font-weight: 400;
+}
+
+.music-description {
+  max-width: 300px;
+
+  margin-top: 20px;
+
+  color: var(--muted);
+
+  font-size: 0.85rem;
+
+  line-height: 1.7;
+}
+
+/* ---------------------------------
+   Progress
+--------------------------------- */
+
+.music-progress-area {
+  width: 100%;
+
+  margin-top: 40px;
+}
+
+.music-progress {
+  width: 100%;
+
+  height: 3px;
+
+  background:
+    rgba(36, 23, 25, 0.1);
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  overflow: hidden;
+}
+
+.music-progress-filled {
+  height: 100%;
+
+  background: var(--accent);
+
+  transition:
+    width 0.1s linear;
+}
+
+.music-times {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 8px;
+
+  color: var(--muted);
+
+  font-size: 0.62rem;
+}
+
+/* ---------------------------------
+   Main button
+--------------------------------- */
+
+.music-main-button {
+  margin-top: 35px;
+
+  min-width: 170px;
+
+  padding: 14px 22px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border-radius: 100px;
+
+  background: var(--text);
+
+  color: white;
+
+  font-size: 0.78rem;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.music-main-button:hover {
+  transform: translateY(-3px);
+
+  background: var(--accent);
+}
+
+/* ---------------------------------
+   Mobile
+--------------------------------- */
+
+@media (max-width: 600px) {
+  .music-player {
+    right: 15px;
+    bottom: 15px;
+  }
+
+  .music-panel {
+    min-height: 570px;
+
+    padding: 55px 25px;
+  }
+
+  .music-disc {
+    width: 190px;
+    height: 190px;
+
+    margin: 40px 0 35px;
+  }
+
+  .music-disc-inner {
+    width: 50px;
+    height: 50px;
+  }
+
+  .music-panel h2 {
+    font-size: 2.8rem;
+  }
+}
+
+/* =================================
+   Love Message
+================================= */
+
+.love-message-section {
+  position: relative;
+
+  min-height: 150vh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 160px 7vw;
+
+  background: #fff;
+}
+
+.love-message-inner {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+/* ---------------------------------
+   Heading
+--------------------------------- */
+
+.love-message-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 100px;
+}
+
+.love-small-heart {
+  width: 50px;
+  height: 50px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: #f8dfe5;
+
+  color: var(--accent);
+
+  font-size: 1.2rem;
+}
+
+/* ---------------------------------
+   Main Text
+--------------------------------- */
+
+.love-message-content {
+  max-width: 900px;
+
+  font-size: clamp(2rem, 4vw, 4rem);
+
+  line-height: 1.3;
+
+  letter-spacing: -0.035em;
+}
+
+.love-line {
+  margin-bottom: 10px;
+
+  opacity: 0.12;
+
+  will-change: transform, opacity;
+}
+
+.love-line.serif {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+}
+
+.love-highlight {
+  color: var(--accent);
+
+  margin-top: 15px;
+}
+
+/* ---------------------------------
+   Signature
+--------------------------------- */
+
+.love-message-signature {
+  margin-top: 100px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  color: var(--muted);
+
+  font-size: 0.85rem;
+}
+
+.love-message-signature strong {
+  font-family: "Playfair Display", serif;
+
+  font-size: 1.5rem;
+
+  color: var(--text);
+
+  font-weight: 400;
+}
+
+/* ---------------------------------
+   Mobile
+--------------------------------- */
+
+@media (max-width: 768px) {
+  .love-message-section {
+    min-height: 130vh;
+
+    padding: 120px 25px;
+  }
+
+  .love-message-heading {
+    margin-bottom: 70px;
+  }
+
+  .love-message-content {
+    font-size: clamp(1.8rem, 8vw, 3rem);
+  }
+
+  .love-message-signature {
+    margin-top: 70px;
+  }
+}
+
+/* =================================
+   Our Story
+================================= */
+
+.story-section {
+  position: relative;
+
+  padding: 180px 7vw 120px;
+
+  background: #fff8f8;
+
+  overflow: hidden;
+}
+
+/* ---------------------------------
+   Header
+--------------------------------- */
+
+.story-header {
+  width: min(1100px, 100%);
+  margin: 0 auto 150px;
+
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 0.7fr;
+
+  align-items: end;
+  gap: 40px;
+}
+
+.story-title {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(4rem, 8vw, 8rem);
+
+  line-height: 0.85;
+
+  font-weight: 400;
+
+  letter-spacing: -0.055em;
+}
+
+.story-title em {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.story-header > p {
+  color: var(--muted);
+
+  font-size: 0.85rem;
+
+  line-height: 1.7;
+}
+
+/* ---------------------------------
+   Timeline
+--------------------------------- */
+
+.timeline-track {
+  position: relative;
+
+  width: min(1100px, 100%);
+
+  margin: 0 auto;
+}
+
+.timeline-line,
+.timeline-line-progress {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: 50%;
+
+  width: 1px;
+
+  transform: translateX(-50%);
+}
+
+.timeline-line {
+  background: rgba(36, 23, 25, 0.12);
+}
+
+.timeline-line-progress {
+  background: var(--accent);
+
+  transform-origin: top center;
+}
+
+/* ---------------------------------
+   Timeline Item
+--------------------------------- */
+
+.timeline-item {
+  position: relative;
+
+  min-height: 300px;
+
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+}
+
+.timeline-left {
+  justify-content: flex-start;
+}
+
+.timeline-right {
+  justify-content: flex-end;
+}
+
+.timeline-content {
+  width: calc(50% - 70px);
+
+  padding: 35px;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  border: 1px solid var(--border);
+
+  border-radius: 4px;
+
+  box-shadow: 0 20px 60px rgba(40, 15, 20, 0.04);
+}
+
+.timeline-date {
+  display: block;
+
+  margin-bottom: 14px;
+
+  color: var(--accent);
+
+  font-size: 0.68rem;
+
+  letter-spacing: 0.16em;
+
+  font-weight: 600;
+}
+
+.timeline-content h3 {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+
+  line-height: 1;
+
+  font-weight: 400;
+
+  margin-bottom: 18px;
+}
+
+.timeline-content p {
+  color: var(--muted);
+
+  font-size: 0.9rem;
+
+  line-height: 1.8;
+
+  max-width: 430px;
+}
+
+/* ---------------------------------
+   Dot
+--------------------------------- */
+
+.timeline-dot {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 18px;
+  height: 18px;
+
+  transform: translate(-50%, -50%);
+
+  border: 1px solid var(--accent);
+
+  border-radius: 50%;
+
+  background: var(--bg);
+
+  z-index: 2;
+
+  display: grid;
+  place-items: center;
+}
+
+.timeline-dot span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+}
+
+/* ---------------------------------
+   Numbers
+--------------------------------- */
+
+.timeline-number {
+  position: absolute;
+
+  top: 50%;
+
+  color: rgba(36, 23, 25, 0.2);
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 4rem;
+
+  line-height: 1;
+
+  transform: translateY(-50%);
+}
+
+.timeline-left .timeline-number {
+  right: calc(50% + 35px);
+}
+
+.timeline-right .timeline-number {
+  left: calc(50% + 35px);
+}
+
+/* ---------------------------------
+   Ending
+--------------------------------- */
+
+.story-end {
+  margin-top: 120px;
+
+  text-align: center;
+
+  color: var(--muted);
+
+  font-family: "Playfair Display", serif;
+
+  font-style: italic;
+
+  font-size: 1.1rem;
+}
+
+.story-end div {
+  margin-top: 20px;
+
+  color: var(--accent);
+
+  font-size: 1.5rem;
+}
+
+/* ---------------------------------
+   Mobile
+--------------------------------- */
+
+@media (max-width: 800px) {
+  .story-section {
+    padding: 130px 25px 100px;
+  }
+
+  .story-header {
+    grid-template-columns: 1fr;
+
+    margin-bottom: 100px;
+
+    gap: 25px;
+  }
+
+  .story-title {
+    font-size: clamp(4rem, 18vw, 6rem);
+  }
+
+  .timeline-line,
+  .timeline-line-progress {
+    left: 12px;
+  }
+
+  .timeline-item,
+  .timeline-left,
+  .timeline-right {
+    justify-content: flex-start;
+
+    min-height: 300px;
+
+    padding-left: 50px;
+  }
+
+  .timeline-content {
+    width: 100%;
+
+    padding: 25px;
+  }
+
+  .timeline-dot {
+    left: 12px;
+  }
+
+  .timeline-number,
+  .timeline-left .timeline-number,
+  .timeline-right .timeline-number {
+    display: none;
+  }
+}
+
+/* =================================
+   Memory Deck
+================================= */
+
+.memory-section {
+  position: relative;
+
+  min-height: 120vh;
+
+  padding: 180px 7vw;
+
+  background: #f9eeee;
+
+  overflow: hidden;
+}
+
+/* ---------------------------------
+   Heading
+--------------------------------- */
+
+.memory-heading {
+  width: min(1100px, 100%);
+  margin: 0 auto 100px;
+}
+
+.memory-heading h2 {
+  margin-top: 20px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(4rem, 8vw, 8rem);
+
+  font-weight: 400;
+
+  line-height: 0.85;
+
+  letter-spacing: -0.055em;
+}
+
+.memory-heading h2 em {
+  color: var(--accent);
+
+  font-weight: 400;
+}
+
+.memory-heading p {
+  margin-top: 35px;
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+
+  line-height: 1.8;
+}
+
+/* ---------------------------------
+   Layout
+--------------------------------- */
+
+.memory-layout {
+  width: min(1100px, 100%);
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: 1fr 0.45fr;
+
+  align-items: center;
+
+  gap: 100px;
+}
+
+/* ---------------------------------
+   Deck
+--------------------------------- */
+
+.memory-deck-wrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.memory-swiper {
+  width: min(430px, 80vw);
+  height: 570px;
+
+  overflow: visible;
+}
+
+.memory-swiper .swiper-slide {
+  border-radius: 3px;
+
+  overflow: hidden;
+
+  background: white;
+
+  box-shadow: 0 30px 80px rgba(40, 15, 20, 0.15);
+}
+
+.memory-card {
+  width: 100%;
+  height: 100%;
+
+  background: white;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+/* ---------------------------------
+   Image
+--------------------------------- */
+
+.memory-image {
+  position: relative;
+
+  width: 100%;
+
+  height: 64%;
+
+  overflow: hidden;
+
+  background: #eee;
+}
+
+.memory-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition: transform 0.6s ease;
+}
+
+.swiper-slide-active .memory-image img {
+  transform: scale(1.02);
+}
+
+.memory-number {
+  position: absolute;
+
+  top: 18px;
+  left: 18px;
+
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  color: var(--text);
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 0.9rem;
+}
+
+/* ---------------------------------
+   Card Information
+--------------------------------- */
+
+.memory-card-info {
+  flex: 1;
+
+  padding: 25px 28px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.memory-date {
+  color: var(--accent);
+
+  font-size: 0.62rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+.memory-card-info h3 {
+  margin-top: 8px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 1.8rem;
+
+  line-height: 1;
+
+  font-weight: 400;
+}
+
+.memory-card-info p {
+  margin-top: 10px;
+
+  color: var(--muted);
+
+  font-size: 0.78rem;
+
+  line-height: 1.6;
+}
+
+/* ---------------------------------
+   Instruction
+--------------------------------- */
+
+.deck-instruction {
+  margin-top: 30px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: var(--muted);
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+.deck-instruction span {
+  color: var(--accent);
+
+  font-size: 1rem;
+}
+
+/* ---------------------------------
+   Side Information
+--------------------------------- */
+
+.memory-info {
+  padding-top: 20px;
+}
+
+.memory-side-label {
+  color: var(--accent);
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.18em;
+
+  font-weight: 600;
+}
+
+.memory-side-line {
+  width: 60px;
+  height: 1px;
+
+  margin: 25px 0;
+
+  background: var(--accent);
+}
+
+.memory-info p {
+  color: var(--muted);
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 1.3rem;
+
+  line-height: 1.5;
+
+  margin-bottom: 25px;
+}
+
+.memory-heart {
+  margin-top: 50px;
+
+  color: var(--accent);
+
+  font-size: 2rem;
+
+  animation: memoryHeartFloat 2.5s infinite ease-in-out;
+}
+
+@keyframes memoryHeartFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ---------------------------------
+   Mobile
+--------------------------------- */
+
+@media (max-width: 850px) {
+  .memory-section {
+    padding: 130px 25px;
+  }
+
+  .memory-layout {
+    grid-template-columns: 1fr;
+
+    gap: 70px;
+  }
+
+  .memory-info {
+    text-align: center;
+  }
+
+  .memory-side-line {
+    margin: 20px auto;
+  }
+
+  .memory-heart {
+    margin-top: 30px;
+  }
+
+  .memory-swiper {
+    width: min(370px, 85vw);
+    height: 520px;
+  }
+}
+
+@media (max-width: 450px) {
+  .memory-swiper {
+    width: 82vw;
+    height: 500px;
+  }
+
+  .memory-card-info {
+    padding: 20px;
+  }
+
+  .memory-card-info h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* =================================
+   Special Moments
+================================= */
+
+.moments-section {
+  position: relative;
+
+  min-height: 120vh;
+
+  padding: 180px 7vw 140px;
+
+  background: #fff;
+
+  overflow: hidden;
+}
+
+/* ---------------------------------
+   Heading
+--------------------------------- */
+
+.moments-heading {
+  width: min(1100px, 100%);
+  margin: 0 auto 90px;
+}
+
+.moments-heading h2 {
+  margin-top: 20px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(4rem, 8vw, 8rem);
+
+  font-weight: 400;
+
+  line-height: 0.85;
+
+  letter-spacing: -0.055em;
+}
+
+.moments-heading h2 em {
+  color: var(--accent);
+
+  font-weight: 400;
+}
+
+.moments-heading p {
+  margin-top: 35px;
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+
+  line-height: 1.8;
+}
+
+/* ---------------------------------
+   Interactive Space
+--------------------------------- */
+
+.moments-space {
+  position: relative;
+
+  width: min(900px, 100%);
+
+  height: 650px;
+
+  margin: 0 auto;
+}
+
+/* ---------------------------------
+   Orbit
+--------------------------------- */
+
+.moment-orbit {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  border: 1px solid rgba(217, 79, 112, 0.12);
+
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+.orbit-one {
+  width: 420px;
+  height: 420px;
+}
+
+.orbit-two {
+  width: 620px;
+  height: 620px;
+
+  border-style: dashed;
+}
+
+/* ---------------------------------
+   Center
+--------------------------------- */
+
+.moment-center {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 190px;
+  height: 190px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  background: #fff8f8;
+
+  border: 1px solid rgba(217, 79, 112, 0.12);
+
+  box-shadow: 0 20px 60px rgba(40, 15, 20, 0.06);
+}
+
+.moment-center span {
+  color: var(--muted);
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 1rem;
+
+  font-style: italic;
+}
+
+.moment-center strong {
+  font-family: "Playfair Display", serif;
+
+  font-size: 1.25rem;
+
+  font-weight: 400;
+}
+
+.moment-center div {
+  margin-top: 8px;
+
+  color: var(--accent);
+}
+
+/* ---------------------------------
+   Moment Items
+--------------------------------- */
+
+.moment-item {
+  position: absolute;
+
+  width: 115px;
+  height: 115px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  box-shadow: 0 15px 40px rgba(40, 15, 20, 0.08);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.moment-item:hover {
+  transform: scale(1.12);
+
+  box-shadow: 0 20px 50px rgba(40, 15, 20, 0.14);
+}
+
+.moment-icon {
+  font-size: 1.8rem;
+
+  line-height: 1;
+}
+
+.moment-label {
+  color: var(--muted);
+
+  font-size: 0.62rem;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+/* ---------------------------------
+   Positions
+--------------------------------- */
+
+.moment-one {
+  top: 5%;
+  left: 18%;
+}
+
+.moment-two {
+  top: 8%;
+  right: 15%;
+}
+
+.moment-three {
+  top: 43%;
+  left: 2%;
+}
+
+.moment-four {
+  top: 48%;
+  right: 2%;
+}
+
+.moment-five {
+  bottom: 5%;
+  left: 20%;
+}
+
+.moment-six {
+  bottom: 3%;
+  right: 20%;
+}
+
+/* ---------------------------------
+   Modal
+--------------------------------- */
+
+.moment-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 4500;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  background: rgba(36, 23, 25, 0.35);
+
+  backdrop-filter: blur(10px);
+}
+
+.moment-modal-card {
+  position: relative;
+
+  width: min(500px, 100%);
+
+  padding: 55px 45px;
+
+  background: #fff8f8;
+
+  text-align: center;
+
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.15);
+
+  animation: modalIn 0.45s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.moment-close {
+  position: absolute;
+
+  top: 18px;
+  right: 20px;
+
+  width: 35px;
+  height: 35px;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  font-size: 1.5rem;
+
+  color: var(--muted);
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.moment-close:hover {
+  background: #f5dce2;
+
+  color: var(--accent);
+}
+
+.moment-modal-icon {
+  margin: 25px 0 15px;
+
+  font-size: 3rem;
+}
+
+.moment-modal-card h3 {
+  font-family: "Playfair Display", serif;
+
+  font-size: 2.5rem;
+
+  font-weight: 400;
+
+  line-height: 1;
+}
+
+.moment-modal-card p {
+  margin: 25px auto 0;
+
+  max-width: 390px;
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+
+  line-height: 1.8;
+}
+
+.moment-modal-heart {
+  display: block;
+
+  margin-top: 30px;
+
+  color: var(--accent);
+
+  font-size: 1.3rem;
+}
+
+/* ---------------------------------
+   Mobile
+--------------------------------- */
+
+@media (max-width: 700px) {
+  .moments-section {
+    padding: 130px 25px 100px;
+  }
+
+  .moments-space {
+    height: 600px;
+  }
+
+  .orbit-one {
+    width: 300px;
+    height: 300px;
+  }
+
+  .orbit-two {
+    width: 460px;
+    height: 460px;
+  }
+
+  .moment-center {
+    width: 140px;
+    height: 140px;
+  }
+
+  .moment-center strong {
+    font-size: 1rem;
+  }
+
+  .moment-item {
+    width: 85px;
+    height: 85px;
+  }
+
+  .moment-icon {
+    font-size: 1.4rem;
+  }
+
+  .moment-label {
+    font-size: 0.5rem;
+  }
+
+  .moment-one {
+    top: 4%;
+    left: 3%;
+  }
+
+  .moment-two {
+    top: 4%;
+    right: 3%;
+  }
+
+  .moment-three {
+    top: 40%;
+    left: 0;
+  }
+
+  .moment-four {
+    top: 40%;
+    right: 0;
+  }
+
+  .moment-five {
+    bottom: 5%;
+    left: 5%;
+  }
+
+  .moment-six {
+    bottom: 5%;
+    right: 5%;
+  }
+
+  .moment-modal-card {
+    padding: 45px 25px;
+  }
+
+  .moment-modal-card h3 {
+    font-size: 2rem;
+  }
+}
+
+/* =================================
+   Letters
+================================= */
+
+.letters-section {
+  position: relative;
+
+  min-height: 110vh;
+
+  padding: 180px 7vw 130px;
+
+  background: #fff8f8;
+
+  overflow: hidden;
+}
+
+/* ---------------------------------
+   Heading
+--------------------------------- */
+
+.letters-heading {
+  width: min(1100px, 100%);
+
+  margin: 0 auto 100px;
+}
+
+.letters-heading h2 {
+  margin-top: 20px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(4rem, 8vw, 8rem);
+
+  font-weight: 400;
+
+  line-height: 0.85;
+
+  letter-spacing: -0.055em;
+}
+
+.letters-heading h2 em {
+  color: var(--accent);
+
+  font-weight: 400;
+}
+
+.letters-heading p {
+  margin-top: 35px;
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+
+  line-height: 1.8;
+}
+
+/* ---------------------------------
+   Envelope Grid
+--------------------------------- */
+
+.letters-grid {
+  width: min(1000px, 100%);
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 35px;
+
+  align-items: start;
+}
+
+.letter-envelope {
+  position: relative;
+
+  padding: 0;
+
+  background: transparent;
+
+  text-align: left;
+
+  transition:
+    transform 0.4s ease;
+}
+
+.envelope-1 {
+  transform: rotate(-4deg);
+}
+
+.envelope-2 {
+  transform: translateY(45px) rotate(2deg);
+}
+
+.envelope-3 {
+  transform: rotate(-2deg);
+}
+
+.letter-envelope:hover {
+  transform:
+    translateY(-15px)
+    rotate(0deg);
+}
+
+/* ---------------------------------
+   Envelope
+--------------------------------- */
+
+.envelope-back {
+  position: relative;
+
+  aspect-ratio: 1.35;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f4cbd4,
+      #f9dfe4
+    );
+
+  border: 1px solid rgba(120, 30, 50, 0.08);
+
+  box-shadow:
+    0 25px 60px rgba(40, 15, 20, 0.1);
+}
+
+/* Envelope flap */
+
+.envelope-flap {
+  position: absolute;
+
+  top: -35%;
+
+  left: 7%;
+
+  width: 86%;
+
+  height: 75%;
+
+  background: #f1c2cc;
+
+  transform: rotate(45deg);
+
+  transform-origin: center;
+
+  box-shadow:
+    0 2px 10px rgba(120, 30, 50, 0.04);
+}
+
+/* Envelope center heart */
+
+.envelope-heart {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 55px;
+  height: 55px;
+
+  transform: translate(-50%, -50%);
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: white;
+
+  color: var(--accent);
+
+  font-size: 1.1rem;
+
+  box-shadow:
+    0 10px 30px rgba(40, 15, 20, 0.08);
+
+  transition:
+    transform 0.4s ease;
+}
+
+.letter-envelope:hover .envelope-heart {
+  transform:
+    translate(-50%, -50%)
+    scale(1.15);
+}
+
+/* ---------------------------------
+   Envelope text
+--------------------------------- */
+
+.envelope-number {
+  position: absolute;
+
+  top: 15px;
+  left: 17px;
+
+  z-index: 2;
+
+  color: rgba(36, 23, 25, 0.35);
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 0.8rem;
+}
+
+.envelope-label {
+  padding: 20px 3px 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.envelope-label span {
+  color: var(--muted);
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+.envelope-label strong {
+  font-family: "Playfair Display", serif;
+
+  font-size: 1.5rem;
+
+  font-weight: 400;
+}
+
+/* ---------------------------------
+   Footer
+--------------------------------- */
+
+.letters-footer {
+  width: min(1000px, 100%);
+
+  margin: 100px auto 0;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  color: var(--muted);
+
+  font-size: 0.65rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.12em;
+}
+
+.letters-footer span:last-child {
+  color: var(--accent);
+
+  font-size: 1rem;
+}
+
+/* ---------------------------------
+   Letter Overlay
+--------------------------------- */
+
+.letter-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 4800;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  background:
+    rgba(36, 23, 25, 0.38);
+
+  backdrop-filter: blur(12px);
+
+  animation:
+    overlayIn 0.35s ease;
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------
+   Letter Paper
+--------------------------------- */
+
+.letter-paper {
+  position: relative;
+
+  width: min(650px, 100%);
+
+  max-height: 85vh;
+
+  overflow-y: auto;
+
+  padding: 65px 65px 55px;
+
+  background:
+    #fffdf8;
+
+  box-shadow:
+    0 40px 120px rgba(0, 0, 0, 0.2);
+
+  animation:
+    letterOpen 0.6s
+    cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes letterOpen {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(50px)
+      rotate(2deg)
+      scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotate(0)
+      scale(1);
+  }
+}
+
+.letter-close {
+  position: absolute;
+
+  top: 18px;
+  right: 20px;
+
+  width: 35px;
+  height: 35px;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  font-size: 1.5rem;
+}
+
+.letter-close:hover {
+  background: #f8e3e7;
+
+  color: var(--accent);
+}
+
+/* ---------------------------------
+   Paper Content
+--------------------------------- */
+
+.letter-paper-top {
+  display: flex;
+
+  justify-content: space-between;
+
+  color: var(--accent);
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+.letter-paper h3 {
+  margin-top: 35px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(2.5rem, 5vw, 4rem);
+
+  font-weight: 400;
+
+  line-height: 1;
+}
+
+.letter-divider {
+  width: 55px;
+  height: 1px;
+
+  margin: 30px 0;
+
+  background: var(--accent);
+}
+
+.letter-paper p {
+  white-space: pre-line;
+
+  color: #5f5153;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 1.05rem;
+
+  line-height: 2;
+}
+
+.letter-signature {
+  margin-top: 45px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  color: var(--muted);
+
+  font-size: 0.8rem;
+}
+
+.letter-signature strong {
+  font-family: "Playfair Display", serif;
+
+  color: var(--text);
+
+  font-size: 1.5rem;
+
+  font-weight: 400;
+}
+
+/* ---------------------------------
+   Mobile
+--------------------------------- */
+
+@media (max-width: 750px) {
+  .letters-section {
+    padding: 130px 25px 100px;
+  }
+
+  .letters-grid {
+    grid-template-columns: 1fr;
+
+    gap: 55px;
+
+    max-width: 380px;
+  }
+
+  .envelope-1,
+  .envelope-2,
+  .envelope-3 {
+    transform: rotate(0);
+  }
+
+  .envelope-2 {
+    transform: translateY(0);
+  }
+
+  .letter-paper {
+    padding: 50px 28px 40px;
+  }
+
+  .letter-paper p {
+    font-size: 0.95rem;
+
+    line-height: 1.9;
+  }
+}
+
+/* =================================
+   Birthday Wish
+================================= */
+
+.birthday-section {
+  position: relative;
+
+  min-height: 120vh;
+
+  padding: 180px 7vw 150px;
+
+  background: #fff;
+
+  overflow: hidden;
+}
+
+/* ---------------------------------
+   Heading
+--------------------------------- */
+
+.birthday-heading {
+  width: min(1000px, 100%);
+
+  margin: 0 auto 100px;
+}
+
+.birthday-heading h2 {
+  margin-top: 20px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(4rem, 8vw, 8rem);
+
+  font-weight: 400;
+
+  line-height: 0.85;
+
+  letter-spacing: -0.055em;
+}
+
+.birthday-heading h2 em {
+  color: var(--accent);
+
+  font-weight: 400;
+}
+
+.birthday-heading p {
+  margin-top: 35px;
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+
+  line-height: 1.8;
+}
+
+/* ---------------------------------
+   Stage
+--------------------------------- */
+
+.birthday-stage {
+  width: min(900px, 100%);
+
+  margin: 0 auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+/* ---------------------------------
+   Cake
+--------------------------------- */
+
+.birthday-cake {
+  position: relative;
+
+  width: 300px;
+
+  margin-top: 40px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+/* ---------------------------------
+   Candle
+--------------------------------- */
+
+.cake-candle {
+  position: relative;
+
+  width: 35px;
+  height: 120px;
+
+  margin-bottom: -2px;
+
+  z-index: 3;
+}
+
+.candle-stick {
+  position: absolute;
+
+  bottom: 0;
+  left: 50%;
+
+  width: 25px;
+  height: 85px;
+
+  transform: translateX(-50%);
+
+  border-radius: 5px 5px 2px 2px;
+
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #f4c3ce 0,
+      #f4c3ce 8px,
+      #fff 8px,
+      #fff 16px
+    );
+}
+
+.candle-flame {
+  position: absolute;
+
+  top: -5px;
+  left: 50%;
+
+  width: 25px;
+  height: 35px;
+
+  transform:
+    translateX(-50%)
+    rotate(45deg);
+
+  border-radius:
+    50% 50% 50% 0;
+
+  background: #e68a9e;
+
+  z-index: 2;
+
+  animation:
+    flameMove 1s
+    infinite alternate
+    ease-in-out;
+}
+
+.candle-flame span {
+  position: absolute;
+
+  width: 10px;
+  height: 16px;
+
+  left: 6px;
+  top: 8px;
+
+  border-radius:
+    50% 50% 50% 0;
+
+  background: #fff;
+}
+
+@keyframes flameMove {
+  from {
+    transform:
+      translateX(-50%)
+      rotate(43deg)
+      scale(1);
+  }
+
+  to {
+    transform:
+      translateX(-50%)
+      rotate(47deg)
+      scale(1.08);
+  }
+}
+
+.candle-glow {
+  position: absolute;
+
+  top: -25px;
+  left: 50%;
+
+  width: 70px;
+  height: 70px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(217, 79, 112, 0.2),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+/* ---------------------------------
+   Cake
+--------------------------------- */
+
+.cake-top {
+  position: relative;
+
+  width: 250px;
+  height: 65px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-evenly;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      #f9dce2,
+      #f1bdc8
+    );
+
+  box-shadow:
+    0 15px 30px
+    rgba(40, 15, 20, 0.08);
+
+  z-index: 2;
+}
+
+.cake-top span {
+  color: white;
+
+  font-size: 0.9rem;
+}
+
+.cake-body {
+  width: 250px;
+  height: 110px;
+
+  margin-top: -30px;
+
+  padding-top: 45px;
+
+  border-radius:
+    10px
+    10px
+    25px
+    25px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #f2c1cb,
+      #f8dce1,
+      #f2c1cb
+    );
+
+  box-shadow:
+    0 25px 50px
+    rgba(40, 15, 20, 0.1);
+
+  overflow: hidden;
+}
+
+.cake-line {
+  width: 180px;
+  height: 2px;
+
+  margin: 15px auto;
+
+  background:
+    rgba(255, 255, 255, 0.6);
+}
+
+.cake-plate {
+  width: 320px;
+  height: 20px;
+
+  margin-top: -5px;
+
+  border-radius: 50%;
+
+  background: #f4e1e4;
+
+  box-shadow:
+    0 12px 20px
+    rgba(40, 15, 20, 0.08);
+}
+
+/* ---------------------------------
+   Instruction
+--------------------------------- */
+
+.candle-instruction {
+  margin-top: 30px;
+
+  color: var(--muted);
+
+  font-size: 0.65rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.15em;
+}
+
+/* ---------------------------------
+   Wish
+--------------------------------- */
+
+.birthday-wish {
+  width: min(700px, 100%);
+
+  margin-top: 90px;
+
+  opacity: 0;
+}
+
+.birthday-wish h3 {
+  margin-top: 25px;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
+
+  line-height: 1;
+
+  font-weight: 400;
+
+  letter-spacing: -0.04em;
+}
+
+.birthday-wish h3 em {
+  color: var(--accent);
+
+  font-weight: 400;
+}
+
+.birthday-wish > p {
+  max-width: 500px;
+
+  margin: 30px auto 0;
+
+  color: var(--muted);
+
+  font-size: 0.95rem;
+
+  line-height: 1.9;
+}
+
+.wish-heart {
+  margin-top: 35px;
+
+  color: var(--accent);
+
+  font-size: 1.5rem;
+}
+
+.wish-signature {
+  display: block;
+
+  margin-top: 25px;
+
+  color: var(--muted);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-style: italic;
+
+  font-size: 1.1rem;
+}
+
+/* ---------------------------------
+   Mobile
+--------------------------------- */
+
+@media (max-width: 600px) {
+  .birthday-section {
+    padding: 130px 25px 110px;
+  }
+
+  .birthday-cake {
+    transform: scale(0.85);
+  }
+
+  .birthday-wish {
+    margin-top: 60px;
+  }
+
+  .birthday-wish h3 {
+    font-size: 2.5rem;
+  }
+}
