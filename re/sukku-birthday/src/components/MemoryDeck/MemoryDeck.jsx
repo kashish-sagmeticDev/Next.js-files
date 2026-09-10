@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -14,153 +14,188 @@ gsap.registerPlugin(ScrollTrigger);
 
 function MemoryDeck() {
   const sectionRef = useRef(null);
+  const swiperRef = useRef(null);
+
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".memory-heading > *", {
-        opacity: 0,
-        y: 40,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".memory-heading",
-          start: "top 80%",
+      gsap.fromTo(
+        ".memory__eyebrow",
+        {
+          opacity: 0,
+          y: 25,
         },
-      });
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            once: true,
+          },
+        }
+      );
 
-      gsap.from(".memory-deck-wrapper", {
-        opacity: 0,
-        scale: 0.9,
-        y: 80,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".memory-deck-wrapper",
-          start: "top 80%",
+      gsap.fromTo(
+        ".memory__title",
+        {
+          opacity: 0,
+          y: 45,
         },
-      });
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            once: true,
+          },
+        }
+      );
 
-      gsap.from(".memory-info", {
-        opacity: 0,
-        x: 40,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".memory-info",
-          start: "top 80%",
+      gsap.fromTo(
+        ".memory__deck-area",
+        {
+          opacity: 0,
+          y: 50,
+          scale: 0.96,
         },
-      });
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          delay: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".memory__deck-area",
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  return (
-    <section
-      ref={sectionRef}
-      className="memory-section"
-    >
-      <div className="memory-heading">
-        <span className="eyebrow">
-          Little pieces of us
-        </span>
+  const handleSwiper = (swiper) => {
+    swiperRef.current = swiper;
+    setActiveIndex(swiper.activeIndex);
+  };
 
-        <h2>
-          10 moments,
+  const handleSlideChange = (swiper) => {
+    setActiveIndex(swiper.activeIndex);
+  };
+
+  const goPrevious = () => {
+    swiperRef.current?.slidePrev();
+  };
+
+  const goNext = () => {
+    swiperRef.current?.slideNext();
+  };
+
+  return (
+    <section className="memory" ref={sectionRef}>
+      <div className="memory__intro">
+        <p className="memory__eyebrow">
+          A few of my favourite memories
+        </p>
+
+        <h2 className="memory__title">
+          Ten little pieces
           <br />
-          <em>one story.</em>
+          <span>of us.</span>
         </h2>
 
-        <p>
-          Some memories are ordinary.
-          <br />
-          Until you realize how special they became.
+        <p className="memory__hint">
+          Swipe, drag or use the arrows
         </p>
       </div>
 
-      <div className="memory-layout">
-
-        <div className="memory-deck-wrapper">
-          <Swiper
-            effect="cards"
-            grabCursor={true}
-            modules={[EffectCards]}
-            className="memory-swiper"
-            cardsEffect={{
-              perSlideOffset: 10,
-              perSlideRotate: 2,
-              rotate: true,
-              slideShadows: false,
-            }}
-          >
-            {memories.map((memory) => (
-              <SwiperSlide key={memory.id}>
-                <div className="memory-card">
-
-                  <div className="memory-image">
-                    <img
-                      src={memory.image}
-                      alt={memory.title}
-                    />
-
-                    <span className="memory-number">
-                      {String(memory.id).padStart(2, "0")}
-                    </span>
-                  </div>
-
-                  <div className="memory-card-info">
-                    <span className="memory-date">
-                      {memory.date}
-                    </span>
-
-                    <h3>
-                      {memory.title}
-                    </h3>
-
-                    <p>
-                      {memory.text}
-                    </p>
-                  </div>
-
+      <div className="memory__deck-area">
+        <Swiper
+          modules={[EffectCards]}
+          effect="cards"
+          grabCursor={true}
+          slidesPerView={1}
+          centeredSlides={true}
+          onSwiper={handleSwiper}
+          onSlideChange={handleSlideChange}
+          className="memory__swiper"
+          cardsEffect={{
+            perSlideOffset: 8,
+            perSlideRotate: 2,
+            rotate: true,
+            slideShadows: false,
+          }}
+        >
+          {memories.map((memory) => (
+            <SwiperSlide key={memory.id}>
+              <article className="memory-card">
+                <div className="memory-card__image">
+                  <img
+                    src={memory.image}
+                    alt={memory.title}
+                    data-cursor="VIEW"
+                  />
                 </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
 
-          <div className="deck-instruction">
-            <span>←</span>
-            Drag / swipe the cards
-            <span>→</span>
+                <div className="memory-card__content">
+                  <p className="memory-card__date">
+                    {memory.date}
+                  </p>
+
+                  <h3>{memory.title}</h3>
+
+                  <p>{memory.text}</p>
+                </div>
+              </article>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Navigation */}
+        <div className="memory__navigation">
+          <button
+            type="button"
+            className="memory__arrow"
+            onClick={goPrevious}
+            disabled={activeIndex === 0}
+            data-cursor="BACK"
+            aria-label="Previous memory"
+          >
+            ←
+          </button>
+
+          <div className="memory__counter">
+            <span>
+              {String(activeIndex + 1).padStart(2, "0")}
+            </span>
+
+            <i>/</i>
+
+            <span>
+              {String(memories.length).padStart(2, "0")}
+            </span>
           </div>
+
+          <button
+            type="button"
+            className="memory__arrow"
+            onClick={goNext}
+            disabled={activeIndex === memories.length - 1}
+            data-cursor="NEXT"
+            aria-label="Next memory"
+          >
+            →
+          </button>
         </div>
-
-        <div className="memory-info">
-
-          <span className="memory-side-label">
-            MEMORY DECK
-          </span>
-
-          <div className="memory-side-line" />
-
-          <p>
-            Ten little chapters.
-            <br />
-            Ten reasons to smile.
-          </p>
-
-          <p>
-            And probably a hundred
-            more memories waiting
-            to be made.
-          </p>
-
-          <div className="memory-heart">
-            ♥
-          </div>
-
-        </div>
-
       </div>
     </section>
   );

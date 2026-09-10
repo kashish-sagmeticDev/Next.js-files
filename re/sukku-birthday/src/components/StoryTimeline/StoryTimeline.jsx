@@ -4,144 +4,124 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const timelineData = [
+const timeline = [
   {
-    date: "21 JULY 2021",
-    title: "Where it all started",
-    description:
-      "Sometimes you don't realize that a small moment is going to become the beginning of something important.",
-    number: "01",
+    date: "21 JUL 2021",
+    title: "The first little connection",
+    text: "A small beginning that neither of us knew would become such an important part of our story.",
   },
-
   {
-    date: "29 OCTOBER 2024",
-    title: "Finding our way back",
-    description:
-      "After all that time, somehow our paths crossed again.",
-    number: "02",
+    date: "29 OCT 2024",
+    title: "Finding each other again",
+    text: "After all that time, somehow our paths crossed again.",
   },
-
   {
-    date: "02 FEBRUARY 2025",
-    title: "Our story officially began",
-    description:
-      "A date that turned a beautiful connection into something more.",
-    number: "03",
+    date: "02 FEB 2025",
+    title: "Us",
+    text: "The day our story officially became ours.",
+    special: true,
   },
-
   {
-    date: "16 JUNE 2025",
-    title: "200 KM became 3 KM",
-    description:
-      "Suddenly the distance wasn't 200 kilometres anymore. You were just a few kilometres away.",
-    number: "04",
+    date: "16 JUN 2025",
+    title: "200 KM → 3 KM",
+    text: "Summer training brought you so much closer. From being far away to having you just a few kilometres from me.",
+    distance: true,
   },
-
   {
-    date: "23 OCTOBER 2025",
+    date: "23 OCT 2025",
     title: "Birthday week",
-    description:
-      "A week filled with little moments, laughter, food, conversations and memories.",
-    number: "05",
+    text: "A whole week of little moments, staying together, cooking, talking, laughing and making memories.",
   },
-
   {
-    date: "27 OCTOBER 2025",
-    title: "Your special day",
-    description:
-      "Your birthday, but somehow it felt like a celebration for me too.",
-    number: "06",
+    date: "27 OCT 2025",
+    title: "Your birthday",
+    text: "A day I wanted to make as special as you are.",
+    special: true,
   },
-
   {
-    date: "29 OCTOBER 2025",
+    date: "29 OCT 2025",
     title: "Until the next memory",
-    description:
-      "Another goodbye, but definitely not the end of our story.",
-    number: "07",
+    text: "Another goodbye, but definitely not the end of our story.",
   },
 ];
 
 function StoryTimeline() {
   const sectionRef = useRef(null);
+  const progressRef = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const items = gsap.utils.toArray(".timeline-item");
-
-      items.forEach((item) => {
-        const content = item.querySelector(".timeline-content");
-        const dot = item.querySelector(".timeline-dot");
-        const number = item.querySelector(".timeline-number");
-
-        gsap.fromTo(
-          content,
-          {
-            opacity: 0,
-            y: 80,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: item,
-              start: "top 75%",
-              end: "top 40%",
-              scrub: 1,
-            },
-          }
-        );
-
-        gsap.fromTo(
-          dot,
-          {
-            scale: 0,
-          },
-          {
-            scale: 1,
-            duration: 0.6,
-            ease: "back.out(2)",
-            scrollTrigger: {
-              trigger: item,
-              start: "top 75%",
-            },
-          }
-        );
-
-        gsap.fromTo(
-          number,
-          {
-            opacity: 0,
-            x: -20,
-          },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.6,
-            scrollTrigger: {
-              trigger: item,
-              start: "top 75%",
-            },
-          }
-        );
-      });
-
       gsap.fromTo(
-        ".timeline-line-progress",
+        ".story__eyebrow",
         {
-          scaleY: 0,
+          opacity: 0,
+          y: 25,
         },
         {
-          scaleY: 1,
-          ease: "none",
-          transformOrigin: "top center",
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
           scrollTrigger: {
-            trigger: ".timeline-track",
+            trigger: sectionRef.current,
+            start: "top 75%",
+            once: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".story__title",
+        {
+          opacity: 0,
+          y: 45,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            once: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".story__item",
+        {
+          opacity: 0,
+          y: 45,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.18,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".story__timeline",
+            start: "top 75%",
+            once: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        progressRef.current,
+        {
+          height: "0%",
+        },
+        {
+          height: "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".story__timeline",
             start: "top 65%",
-            end: "bottom 65%",
-            scrub: true,
+            end: "bottom 70%",
+            scrub: 1,
           },
         }
       );
@@ -151,59 +131,56 @@ function StoryTimeline() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="story-section"
-    >
-      <div className="story-header">
-        <span className="eyebrow">The chapters so far</span>
+    <section className="story" ref={sectionRef}>
+      <div className="story__intro">
+        <p className="story__eyebrow">Our story</p>
 
-        <h2 className="story-title">
-          Our <em>story</em>
-        </h2>
-
-        <p>
-          A few dates.
+        <h2 className="story__title">
+          Some dates become
           <br />
-          A lot of memories.
-        </p>
+          <span>memories.</span>
+        </h2>
       </div>
 
-      <div className="timeline-track">
-        <div className="timeline-line" />
-        <div className="timeline-line-progress" />
+      <div className="story__timeline">
+        <div className="story__line">
+          <div className="story__progress" ref={progressRef} />
+        </div>
 
-        {timelineData.map((item, index) => (
-          <div
-            className={`timeline-item ${
-              index % 2 === 0 ? "timeline-left" : "timeline-right"
+        {timeline.map((item, index) => (
+          <article
+            className={`story__item ${
+              index % 2 === 0
+                ? "story__item--left"
+                : "story__item--right"
             }`}
-            key={item.number}
+            key={item.date}
           >
-            <div className="timeline-number">
-              {item.number}
-            </div>
-
-            <div className="timeline-dot">
+            <div className="story__dot">
               <span />
             </div>
 
-            <div className="timeline-content">
-              <span className="timeline-date">
-                {item.date}
-              </span>
+            <div className="story__card">
+              <p className="story__date">{item.date}</p>
 
               <h3>{item.title}</h3>
 
-              <p>{item.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+              <p className="story__text">{item.text}</p>
 
-      <div className="story-end">
-        <span>And this is only the beginning...</span>
-        <div>♥</div>
+              {item.distance && (
+                <div className="story__distance">
+                  <strong>200 KM</strong>
+                  <span>→</span>
+                  <strong>3 KM</strong>
+                </div>
+              )}
+
+              {item.special && (
+                <span className="story__heart">♥</span>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
